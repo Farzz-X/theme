@@ -11,21 +11,11 @@ RED='\033[0;31m'
 MAGENTA='\033[0;35m'
 CYAN='\033[0;36m' # Reset warna teks ke default
 
-# ===========================
-# TOKEN SYSTEM (HIDDEN + EXPIRED + PERMANENT)
-# ===========================
-
-# Token disimpan dalam format base64 agar tidak terlihat jelas.
-# Format sebelum encode:
-# TOKEN|OWNER|TYPE|EXPIRED_DATE
-# TYPE = perm / exp
-# EXPIRY (untuk permanen) = "_"
-
 TOKENS=(
-    "S3l1bWl8RmFyaXN8cGVybXxOT05F"              # Kyumi (permanen)
-    "UFJFTS0xREFZfEZhX3ByZW18cHJlbXwyMDI1LTEyLTA4"   # PREM-1DAY (expired 2025-12-08)
-    "UFJFTS0yREFZfEZhX3ByZW18cHJlbXwyMDI1LTEyLTA5"   # PREM-2DAY
-    "UFJFTS03REFZfEZhX3ByZW18cHJlbXwyMDI1LTEyLTE0"   # PREM-7DAY
+    "S3l1bWl8RmFyaXN8cGVybXxOT05F"
+    "UFJFTS0xREFZfEZhX3ByZW18cHJlbXwyMDI1LTEyLTA4"  
+    "UFJFTS0yREFZfEZhX3ByZW18cHJlbXwyMDI1LTEyLTA5" 
+    "UFJFTS03REFZfEZhX3ByZW18cHJlbXwyMDI1LTEyLTE0"
 )
 
 OWNER_CONTACT="Faris ( Wa : https://wa.me/6288297877872 )"  # Bisa diganti sesuai info owner
@@ -69,37 +59,6 @@ check_token() {
     exit 1
 }
 
-
-echo -e "\033[0m"
-echo -e "${RED}𝗢𝗪𝗡𝗘𝗥${RESET}${BLUE}𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥${RESET}"
-echo -e "${RED}Harga License Permanen:${RESET}${BLUE}15K${RESET}"
-echo ""
-echo -e "${RED}             ⢀⠀⡠⢠⡆⣀⡄⠀⠀⠀⠀⠀⠀⠀⠀     ${NC}"
-            echo -e "${RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣾⣿⣿⣿⣿⣷⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀${NC}"
-            echo -e "${RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣼⣿⣿⣿⣿⣿⣿⣿⣷⡶⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀${NC}"
-            echo -e "${RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀${NC}"
-            echo -e "${RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀${NC}"
-            echo -e "${RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⣿⣿⣿⣿⣿⣿⣿⣿⣿⠻⠀⠀⠀⠀⠀⠀⠀⠀⠀ ${NC}"
-            echo -e "${RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣸⠿⠿⠿⠛⠛⠛⠛⠛⠃⠠⠤⡀⠀⠀⠀⠀⠀⠀⠀${NC}"
-            echo -e "${RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠆⠀⠀⠀⠀⠀⠀⠀${NC}"
-            echo -e "${RED}⠀⠀⠀⠀⠀⠀⠀⠀⢀⢀⣀⠠⠄⠀⠀⠀⠀⠀⠐⠒⠶⠌⡀⠀⠀⠀⠀⠀⠀⠀${NC}"
-            echo -e "${RED}⠀⠀⠀⠀⠀⢀⠄⠊⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠠⠀⠀⠀⠀   ${NC}"
-            echo -e "${RED}⠀⠀⠀⠀⠀⡐⠁⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣶⡄⠀⠀⠀⠀⠀⢁⠀⠀⠀⠀------------------------  ${NC}"
-            echo -e "${RED}⠀⠀⠀⠀⡐⠀⠀⠀⠀⠀⠀⠀⣾⠿⡛⠛⠛⠿⣷⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀• Creadit  : FarisOffc  ${NC}"
-            echo -e "${RED}⠀⠀⠀⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⢠⡇⢀⢎⡷⡄⠀• Support by FarisOffc  ${NC}"
-            echo -e "${RED}⠀⠀⠀⡌⠀⠀⢸⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡠⢣⣟⡞⠀⠀• Whatsapp Admin : 6288297877862 ${NC}"
-            echo -e "${RED}⠀⠀⠰⠀⠀⠀⠈⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡘⣱⢯⠏⠘⡄⠀------------------------⠀${NC}"
-            echo -e "${RED}⠀⢠⠇⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢌⡼⣳⠋⠀⠀⣠⠀${NC}"
-            echo -e "${RED}⠀⠸⢶⡤⠄⢀⣀⡇⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⣀⣠⢂⣞⣽⡗⠂⠀⢻⠋⠀⠀${NC}"
-            echo -e "${RED}⠀⠀⢀⠃⠀⢀⣹⣧⣴⣶⣾⣿⣿⣿⣿⣿⣿⣿⡿⢁⢎⣾⣿⣷⣦⠀⠈⡆⠀⠀${NC}"
-            echo -e "${RED}⠀⠀⡘⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣠⣯⣿⣿⣿⣿⡿⠀⠀⢰⠀⠀${NC}"
-            echo -e "${RED}⠀⢀⠃⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏⣴⣷⣿⣿⣿⣿⣿⡇⠀⠀⠈⡆⠀${NC}"
-            echo -e "${RED}⠀⠈⠀⠀⠀⣸⠟⠟⠉⠋⠈⠁⠈⠁⠈⠀⠈⠀⠃⠘⠀⠉⠹⠉⣷⠀⠀⠀⠃⠀${NC}"
-            echo -e "${RED}⠀⡆⠀⠀⢠⡻⠤⠤⠖⠲⠒⠲⠒⡞⢳⣾⠗⠖⠲⠒⠻⠒⠒⠚⡅⢃⠀⠀⢰⠀${NC}"
-            echo -e "${RED}⢠⣁⣀⣀⡀⢇⣀⣠⣤⣤⣴⣦⠎⡰⣿⣯⣴⣶⣶⣦⣴⣤⣦⣤⠁⢸⣶⣾⣿⣇ ${NC}"
-            echo -e "${RED}⢸⣿⣿⣿⠇⢼⣿⣿⣿⣿⡿⠃⠜⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠸⣿⣿⣿⡿ ${NC}"
-
-
 # Tambahkan bagian lain dari skrip Anda di sini jika diperlukan
 # Fungsi untuk menampilkan animasi loading
 loading_animation() {
@@ -140,19 +99,18 @@ sleep 0
 loading_animation
 check_token
 echo "𝗖𝗢𝗠𝗕𝗜𝗡𝗘𝗗 𝗜𝗡𝗦𝗧𝗔𝗟𝗟𝗘𝗥 ( 𝗙𝗜𝗟𝗘𝗦 )"
-echo "1A. INSTALL THEME ELYSIUM,AUTOSUSPEND"
-echo "2B. INSTALL THEME STELLAR,AUTOSUSPEND"
-echo "3C. INSTALL THEME NIGHT CORE"
-echo "4A INSTALL THEME NEBULA ( UJI COBA )"
-echo "9. HAPUS THEME/ADDON"
-echo "12. MATIKAN SEMUA ANIMASI INSTALLER (TIDAK BERLAKU DI WEB ANDA HANYA MEMATIKAN TEXT ANIMATION INSTALLER)"
-echo "13. KELUAR DARI INSTALLER"
-echo "𝗥𝗢𝗟𝗕𝗔𝗖𝗞 𝗙𝗜𝗟𝗘𝗦"
-echo "R. ROLBACK FILES PTERODACTYL ( TIDAK MEMENGARUHI DATA - DATA SERVER )"
-read -p "PILIH OPSI (1-16): " OPTION
+echo "1. INSTALL THEME ELYSIUM,AUTOSUSPEND"
+echo "2. INSTALL THEME STELLAR,AUTOSUSPEND"
+echo "3. INSTALL THEME NIGHT CORE"
+echo "4 INSTALL THEME NEBULA ( UJI COBA )"
+echo "5. HAPUS THEME/ADDON"
+echo "6. MATIKAN SEMUA ANIMASI INSTALLER (TIDAK BERLAKU DI WEB ANDA HANYA MEMATIKAN TEXT ANIMATION INSTALLER)"
+echo "7. KELUAR DARI INSTALLER"
+echo "8. FILES PTERODACTYL ( TIDAK MEMENGARUHI DATA - DATA SERVER )"
+read -p "PILIH OPSI (1-8): " OPTION
 case "$OPTION" in
 
-R)
+8)
 if [ ! -d "/var/www/pterodactyl" ]; then
   echo "Direktori pterodactyl_backup Tidak ada, silahlan hubungi Dev"
   exit
@@ -175,7 +133,7 @@ php artisan config:cache
 php artisan view:clear
 sudo systemctl restart nginx
 ;;
-1A)
+1)
 #!/bin/bash
 
 # Cek apakah direktori /etc/apt/keyrings sudah ada
@@ -247,7 +205,7 @@ cd /var/www && rm -r "$TEMP_DIR"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) THEME ELYSIUM BERHASIL TERINSTAL"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) ADDON AUTO SUSPEND BERHASIL DIINSTALL."
     ;;
-    2B)
+    2)
     #!/bin/bash
 
 # Cek apakah direktori /etc/apt/keyrings sudah ada
@@ -339,7 +297,7 @@ cd /var/www && rm -r "$TEMP_DIR"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) THEME STELLAR BERHASIL TERINSTAL"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) ADDON AUTO SUSPEND BERHASIL DIINSTALL."
     ;;
-3C)
+3)
 echo -e "${GREEN}Installing ${YELLOW}sudo${GREEN} if not installed${RESET}"
     apt install sudo -y > /dev/null 2>&1
     cd /var/www/ > /dev/null 2>&1
@@ -388,7 +346,7 @@ echo -e "${GREEN}Installing ${YELLOW}sudo${GREEN} if not installed${RESET}"
     echo -e "${GREEN}Optimizing the Panel...${RESET}"
     sudo php artisan optimize:clear > /dev/null 2>&1
     ;;
-        4Ahshs)
+        4hshs)
     animate_text "( 𝗔𝗨𝗧𝗢𝗠𝗔𝗧𝗜𝗖 ) FITUR INI DALAM TAHAP PEMGEMBANGAN"
     ;;
 
@@ -459,9 +417,9 @@ echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
 
         ;;
 
-    4A)
-   REPO_URL="https://github.com/LeXcZxMoDz9/LeXcZUbot"
-TEMP_DIR="LeXcZUbot"
+    4)
+   REPO_URL="https://github.com/Farzz-X/Bul"
+TEMP_DIR="Bul"
 
 BLUEPRINT_PATH="/var/www/pterodactyl/blueprint.sh"
 TEMP_DIR_PATH="/var/www/$TEMP_DIR"
@@ -599,7 +557,7 @@ fi
   echo '<head>'
   echo '    <meta charset="UTF-8">'
   echo '    <meta name="viewport" content="width=device-width, initial-scale=1.0">'
-  echo '    <title>LeXcZ</title>'
+  echo '    <title>Faris</title>'
   echo '    <style>'
   echo "        body {"
   echo "            background-image: url('$URL');"
@@ -626,7 +584,7 @@ mv /tmp/new_wrapper.blade.php wrapper.blade.php
 
 echo -e "${BLUE}BACKGROUND BERHASIL DI GANTI${RESET}"
     ;;
-     9)
+     5)
         echo "HAPUS THEME/ADDON DIPILIH"
         # Contoh perintah untuk menghapus tema/addon
        
@@ -722,7 +680,7 @@ EOF
 if [ $? -eq 0 ]; then
     echo "BACKROUND ANDA BERHASIL DI HAPUS"
 else
-    echo "TERJADI KESALAHAN SAAT MEMPERBARUI FILE!! SILAHKAN HUBUNGI 085263390832 UNTUK MEMINTA BANTUAN"
+    echo "TERJADI KESALAHAN SAAT MEMPERBARUI FILE!! SILAHKAN HUBUNGI 088297877862 UNTUK MEMINTA BANTUAN"
 fi
  ;;
     5)
@@ -807,11 +765,11 @@ sed -i -E -e "s|WEBUSER=\"www-data\" #;|WEBUSER=\"$WEBUSER\" #;|g" -e "s|USERSHE
 chmod +x blueprint.sh
 bash blueprint.sh
         ;;
-    12)
+    6)
         DISABLE_ANIMATIONS=1
         echo -e "${YELLOW}Semua animasi telah dimatikan.${RESET}"
         ;;
-    13)
+    7)
         echo -e "${BLUE}EXIT DARI INSTALLER DIPILIH${RESET}"
         exit 0
         ;;
