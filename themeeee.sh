@@ -22,7 +22,10 @@ CYAN='\033[0;36m' # Reset warna teks ke default
 # EXPIRY (untuk permanen) = "_"
 
 TOKENS=(
-    "VE9LWU8tOTk5fFRva3lvfHBlcm18Xw=="   # Token permanen: TOKYO-999 (owner: Tokyo)
+    "S3l1bWl8RmFyaXN8cGVybXw="   # Token permanen: Kyumi
+    "UFJFTS0xREFZfRmFyaXMfcHJlbXwxOTk5LTEyLTA4"   # PREMIUM-1DAY
+    "UFJFTS0yREFZfRmFyaXMfcHJlbXwxOTk5LTEyLTA5"   # PREMIUM-2DAY
+    "UFJFTS03REFZfRmFyaXMfcHJlbXwxOTk5LTEyLTE0"   # PREMIUM-7DAY
 )
 
 check_token() {
