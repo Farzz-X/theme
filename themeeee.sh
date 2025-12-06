@@ -56,7 +56,7 @@ check_token() {
                 exit 1
             fi
 
-            echo -e "\033[0;32mToken valid. Selamat datang, $OWNER_NAME!\033[0m"
+            echo -e "\033[0;32mToken valid. Selamat datang terima kasih telah membeli license kami, $OWNER_NAME!\033[0m"
             sleep 1
             return
         fi
@@ -71,7 +71,8 @@ check_token() {
 clear
 echo -e "\033[0m"
 echo -e "${RED}𝗢𝗪𝗡𝗘𝗥${RESET}${BLUE}𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥${RESET}"
-echo -e "\033[32mWHATSAPP  : 6288297877872\033[0m"
+echo -e "${RED}Harga License Permanen: ${RESET}${BLUE}15RB${RESET}"
+echo -e "\033[32m WhatsApp Owner Membeli license : 6288297877872\033[0m"
 echo ""
 # Tambahkan bagian lain dari skrip Anda di sini jika diperlukan
 # Fungsi untuk menampilkan animasi loading
@@ -103,7 +104,7 @@ animate_text() {
 }
 
 # Menampilkan teks dengan animasi
-echo -e "${BLUE}(𝗔𝗨𝗧𝗢𝗠𝗔𝗧𝗜𝗖) 𝖫ICENSE ANDA BENAR, TERIMAKASIH TELAH MEMBELI LICENSE INI YA${RESET}"
+echo -e "${BLUE}(𝗔𝗨𝗧𝗢𝗠𝗔𝗧𝗜𝗖) MASUKAN LICENSE ANDA SAAT MEMBELI DI OWNER${RESET}"
 animate_text "OPSI ADA DIBAWAH INI"
 # Fungsi untuk menampilkan animasi loading
 
