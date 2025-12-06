@@ -46,6 +46,27 @@ animate_text() {
     echo ""
 }
 
+check_token() {
+  echo -e "                                                       "
+  echo -e "${BLUE}[+] =============================================== [+]${NC}"
+  echo -e "${BLUE}[+]               LICENSY FarisOffc OFFC             [+]${NC}"
+  echo -e "${BLUE}[+] =============================================== [+]${NC}"
+  echo -e "                                                       "
+  echo -e "${YELLOW}MASUKAN AKSES TOKEN :${NC}"
+  read -r USER_TOKEN
+
+  if [ "$USER_TOKEN" = "Faristamvan" ]; then
+    echo -e "${GREEN}AKSES BERHASIL${NC}}"
+  else
+    echo -e "${GREEN}Buy dulu Gih Ke FarisOffc${NC}"
+    echo -e "${YELLOW}WHATSAPP : 6288297877862${NC}"
+    echo -e "${YELLOW}HARGA TOKEN : 10K FREE UPDATE JIKA ADA TOKEN BARU${NC}"
+    echo -e "${YELLOW}©FarisOffc${NC}"
+    exit 1
+  fi
+  clear
+}
+
 # Menampilkan teks dengan animasi
 echo -e "${BLUE}(𝗔𝗨𝗧𝗢𝗠𝗔𝗧𝗜𝗖) 𝖫ICENSE ANDA BENAR, TERIMAKASIH TELAH MEMBELI LICENSE INI YA${RESET}"
 animate_text "OPSI ADA DIBAWAH INI"
