@@ -69,7 +69,13 @@ check_token() {
     exit 1
 }
 
-echo -e "${RED}             ⢀⠀⡠⢠⡆⣀⡄⠀⠀⠀⠀⠀⠀⠀⠀     ${NC}"
+
+echo -e "\033[0m"
+echo -e "${RED}𝗢𝗪𝗡𝗘𝗥${RESET}${BLUE}𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥${RESET}"
+echo -e "${RED}Harga License Permanen: ${RESET}${BLUE}15RB${RESET}"
+echo -e "\033[32m WhatsApp Owner Membeli license : 6288297877872\033[0m"
+echo ""
+echo -e "${RED}                       ⢀⠀⡠⢠⡆⣀⡄⠀⠀⠀⠀⠀⠀⠀⠀     ${NC}"
             echo -e "${RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣾⣿⣿⣿⣿⣷⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀${NC}"
             echo -e "${RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣼⣿⣿⣿⣿⣿⣿⣿⣷⡶⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀${NC}"
             echo -e "${RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀${NC}"
@@ -95,11 +101,6 @@ echo -e "${RED}             ⢀⠀⡠⢠⡆⣀⡄⠀⠀⠀⠀⠀⠀⠀⠀     ${
             echo -e "${RED}⢸⣿⣿⣿⠇⢼⣿⣿⣿⣿⡿⠃⠜⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠸⣿⣿⣿⡿ ${NC}"
 
 
-echo -e "\033[0m"
-echo -e "${RED}𝗢𝗪𝗡𝗘𝗥${RESET}${BLUE}𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥${RESET}"
-echo -e "${RED}Harga License Permanen: ${RESET}${BLUE}15RB${RESET}"
-echo -e "\033[32m WhatsApp Owner Membeli license : 6288297877872\033[0m"
-echo ""
 # Tambahkan bagian lain dari skrip Anda di sini jika diperlukan
 # Fungsi untuk menampilkan animasi loading
 loading_animation() {
