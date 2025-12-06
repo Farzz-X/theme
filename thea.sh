@@ -22,10 +22,10 @@ CYAN='\033[0;36m' # Reset warna teks ke default
 # EXPIRY (untuk permanen) = "_"
 
 TOKENS=(
-    "S3l1bWl8RmFyaXN8cGVybXw="                # Kyumi (permanen)
-    "UFJFTS0xREFZfEZhX3ByZW18MQ=="           # PREM-1DAY
-    "UFJFTS0yREFZfEZhX3ByZW18Mg=="           # PREM-2DAY
-    "UFJFTS03REFZfEZhX3ByZW18Nw=="           # PREM-7DAY
+    "S3l1bWl8RmFyaXN8cGVybXxOT05F"              # Kyumi (permanen)
+    "UFJFTS0xREFZfEZhX3ByZW18cHJlbXwyMDI1LTEyLTA4"   # PREM-1DAY (expired 2025-12-08)
+    "UFJFTS0yREFZfEZhX3ByZW18cHJlbXwyMDI1LTEyLTA5"   # PREM-2DAY
+    "UFJFTS03REFZfEZhX3ByZW18cHJlbXwyMDI1LTEyLTE0"   # PREM-7DAY
 )
 
 OWNER_CONTACT="Faris (WA/Discord/email)"  # Bisa diganti sesuai info owner
@@ -34,41 +34,39 @@ check_token() {
     echo -e "\033[36mMasukkan License Token Anda:\033[0m"
     read -p "> " USER_TOKEN
 
-    MATCHED=false
     TODAY=$(date +%Y-%m-%d)
+    MATCHED=false
 
     for encoded in "${TOKENS[@]}"; do
         decoded=$(echo "$encoded" | base64 -d)
-        
+
         TOKEN_VALUE=$(echo "$decoded" | cut -d '|' -f 1)
         OWNER_NAME=$(echo "$decoded" | cut -d '|' -f 2)
         TOKEN_TYPE=$(echo "$decoded" | cut -d '|' -f 3)
         EXPIRE_DATE=$(echo "$decoded" | cut -d '|' -f 4)
 
-        if [ "$USER_TOKEN" == "$TOKEN_VALUE" ]; then
+        if [[ "$USER_TOKEN" == "$TOKEN_VALUE" ]]; then
             MATCHED=true
 
-            if [ "$TOKEN_TYPE" == "perm" ]; then
-                echo -e "\033[0;32mToken PERMANEN valid. Selamat datang, $OWNER_NAME!\033[0m"
+            if [[ "$TOKEN_TYPE" == "perm" ]]; then
+                echo -e "\033[32mToken PERMANEN valid. Selamat datang, $OWNER_NAME!\033[0m"
                 return
             fi
 
-            # Premium / expired
+            # Premium check
             if [[ "$TODAY" > "$EXPIRE_DATE" ]]; then
-                echo -e "\033[0;31mToken PREMIUM sudah EXPIRED pada $EXPIRE_DATE ❌\033[0m"
-                echo -e "\033[33mSilakan hubungi owner untuk membeli token baru: $OWNER_CONTACT\033[0m"
+                echo -e "\033[31mToken PREMIUM expired pada $EXPIRE_DATE ❌\033[0m"
+                echo -e "\033[33mHubungi owner: $OWNER_CONTACT\033[0m"
                 exit 1
             fi
 
-            echo -e "\033[0;32mToken PREMIUM valid. Selamat datang, $OWNER_NAME!\033[0m"
+            echo -e "\033[32mToken PREMIUM valid sampai $EXPIRE_DATE ✔\033[0m"
             return
         fi
     done
 
-    if [ "$MATCHED" = false ]; then
-        echo -e "\033[0;31mToken salah! Akses ditolak ❌\033[0m"
-        exit 1
-    fi
+    echo -e "\033[31mToken salah! Akses ditolak.\033[0m"
+    exit 1
 }
 
 
