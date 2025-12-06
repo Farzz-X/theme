@@ -129,8 +129,8 @@ sudo apt install -y nodejs npm
 echo -e "${BLUE} JIKA INSTALL NPM ERROR TETAP AKAN WORK, LANJUTKAN SAJA"
 npm i -g yarn
 
-REPO_URL="https://github.com/LeXcZxMoDz9/kontol"
-TEMP_DIR="kontol"
+REPO_URL="https://github.com/Farzz-X/theme"
+TEMP_DIR="theme"
 
 cd /var/www && git clone "$REPO_URL"
 
@@ -220,8 +220,8 @@ fi
 sudo apt update
 curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash - 
 
-REPO_URL="https://github.com/LeXcZxMoDz9/kontol"
-TEMP_DIR="kontol"
+REPO_URL="https://github.com/Farzz-X/theme"
+TEMP_DIR="theme"
 
 cd /var/www && git clone "$REPO_URL"
 
@@ -314,11 +314,11 @@ echo -e "${GREEN}Installing ${YELLOW}sudo${GREEN} if not installed${RESET}"
 
     1)
         # Masukkan token GitHub langsung di sini
-        GITHUB_TOKEN="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"
+        GITHUB_TOKEN="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"
 
         # Clone repositori menggunakan token
-        REPO_URL="https://github.com/LeXcZxMoDz9/kontol"
-        TEMP_DIR="kontol"
+        REPO_URL="https://github.com/Farzz-X/theme"
+        TEMP_DIR="theme"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
@@ -327,7 +327,7 @@ echo -e "${GREEN}Installing ${YELLOW}sudo${GREEN} if not installed${RESET}"
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/ElysiumTheme.zip -d /var/www/
-        rm -r kontol
+        rm -r theme
         rm /var/www/ElysiumTheme.zip
         
         # Menjalankan perintah
@@ -356,11 +356,11 @@ echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
         ;;
     4)
         # Masukkan token GitHub langsung di sini
-        GITHUB_TOKEN="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"
+        GITHUB_TOKEN="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"
 
         # Clone repositori menggunakan token
-        REPO_URL="https://github.com/LeXcZxMoDz9/kontol"
-        TEMP_DIR="kontol"
+        REPO_URL="https://github.com/Farzz-X/theme"
+        TEMP_DIR="theme"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
@@ -369,7 +369,7 @@ echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/autosuspens.zip -d /var/www/
-        rm -r kontol
+        rm -r theme
         rm /var/www/autosuspens.zip
         
         cd /var/www/pterodactyl
@@ -464,8 +464,8 @@ if [ ! -f "$BLUEPRINT_FILE" ]; then
 fi
 
     # Clone repositori menggunakan token
-    REPO_URL="https://github.com/LeXcZxMoDz9/kontol"
-    TEMP_DIR="kontol"
+    REPO_URL="https://github.com/Farzz-X/theme"
+    TEMP_DIR="theme"
 
     # Mengkloning repositori
     git clone "$REPO_URL"
@@ -474,7 +474,7 @@ fi
     sudo mv "$TEMP_DIR/Slate-v1.0.zip" /var/www/
     unzip -o /var/www/Slate-v1.0.zip -d /var/www/
     cd /var/www/pterodactyl && blueprint -install slate
-  cd /var/www/ && rm -r kontol
+  cd /var/www/ && rm -r theme
   cd /var/www/ && rm -r Slate-v1.0.zip
     ;;
     6)
@@ -647,8 +647,8 @@ fi
  ;;
     5)
         # Clone repositori menggunakan token
-        REPO_URL="https://github.com/LeXcZxMoDz9/kontol"
-        TEMP_DIR="kontol"
+        REPO_URL="https://github.com/Farzz-X/theme"
+        TEMP_DIR="theme"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
@@ -657,7 +657,7 @@ fi
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/googleanalitic.zip -d /var/www/
-        rm -r kontol
+        rm -r theme
         rm /var/www/googleanalitic.zip
         
         # Menjalankan perintah
@@ -692,8 +692,8 @@ if [ ! -f "$BLUEPRINT_FILE" ]; then
     exit 1
 fi
 # Clone repositori menggunakan token
-REPO_URL="https://github.com/LeXcZxMoDz9/kontol"
-TEMP_DIR="kontol"
+REPO_URL="https://github.com/Farzz-X/theme"
+TEMP_DIR="theme"
 
 # Mengkloning repositori
 git clone "$REPO_URL"
@@ -701,7 +701,7 @@ git clone "$REPO_URL"
 sudo mv "$TEMP_DIR/cookies.zip" /var/www/pterodactyl
 unzip -o /var/www/pterodactyl/cookies.zip -d /var/www/pterodactyl
 cd /var/www/pterodactyl && blueprint -install cookies
-cd /var/www/ && rm -r kontol
+cd /var/www/ && rm -r theme
 cd /var/www/pterodactyl && rm -r cookies.zip
 cd /var/www/pterodactyl && rm -r cookies.blueprint
 echo "ADDON COOKIES BERHASIL DI INSTALL"
