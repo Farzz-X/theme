@@ -47,8 +47,26 @@ animate_text() {
 }
 
 # Menampilkan teks dengan animasi
-echo -e "${BLUE}(𝗔𝗨𝗧𝗢𝗠𝗔𝗧𝗜𝗖) 𝖫ICENSE ANDA BENAR, TERIMAKASIH TELAH MEMBELI LICENSE INI YA${RESET}"
-animate_text "OPSI ADA DIBAWAH INI"
+check_token() {
+  echo -e "                                                       "
+  echo -e "${BLUE}[+] =============================================== [+]${NC}"
+  echo -e "${BLUE}[+]               LICENSY FarisOffc OFFC             [+]${NC}"
+  echo -e "${BLUE}[+] =============================================== [+]${NC}"
+  echo -e "                                                       "
+  echo -e "${YELLOW}MASUKAN AKSES TOKEN :${NC}"
+  read -r USER_TOKEN
+
+  if [ "$USER_TOKEN" = "Faristamvan" ]; then
+    echo -e "${GREEN}AKSES BERHASIL${NC}}"
+  else
+    echo -e "${GREEN}Buy dulu Gih Ke FarisOffc${NC}"
+    echo -e "${YELLOW}WHATSAPP : 6288297877862${NC}"
+    echo -e "${YELLOW}HARGA TOKEN : 10K FREE UPDATE JIKA ADA TOKEN BARU${NC}"
+    echo -e "${YELLOW}©FarisOffc${NC}"
+    exit 1
+  fi
+  clear
+}
 # Fungsi untuk menampilkan animasi loading
 
 echo -ne "\033[K"  # Menghapus teks loading dari baris
@@ -58,11 +76,9 @@ echo "9. HAPUS THEME/ADDON"
 echo ""
 echo "𝗖𝗢𝗠𝗕𝗜𝗡𝗘𝗗 𝗜𝗡𝗦𝗧𝗔𝗟𝗟𝗘𝗥 ( 𝗙𝗜𝗟𝗘𝗦 )"
 echo "1A. INSTALL THEME ELYSIUM,AUTOSUSPEND"
-echo "1B. INSTALL THEME STELLAR,AUTOSUSPEND"
-echo "1C. INSTALL THEME NIGHT CORE"
-echo ""
-echo "𝗖𝗢𝗠𝗕𝗜𝗡𝗘𝗗 𝗜𝗡𝗦𝗧𝗔𝗟𝗟𝗘𝗥 ( 𝗣𝗟𝗨𝗚𝗜𝗡𝗦 - 𝗙𝗜𝗟𝗘𝗦 )"
-echo "2A. INSTALL THEME NEBULA ( UJI COBA )"
+echo "2B. INSTALL THEME STELLAR,AUTOSUSPEND"
+echo "3C. INSTALL THEME NIGHT CORE"
+echo "4A INSTALL THEME NEBULA ( UJI COBA )"
 echo ""
 echo "12. MATIKAN SEMUA ANIMASI INSTALLER (TIDAK BERLAKU DI WEB ANDA HANYA MEMATIKAN TEXT ANIMATION INSTALLER)"
 echo "13. KELUAR DARI INSTALLER"
@@ -167,7 +183,7 @@ cd /var/www && rm -r "$TEMP_DIR"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) THEME ELYSIUM BERHASIL TERINSTAL"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) ADDON AUTO SUSPEND BERHASIL DIINSTALL."
     ;;
-    1B)
+    2B)
     #!/bin/bash
 
 # Cek apakah direktori /etc/apt/keyrings sudah ada
@@ -259,7 +275,7 @@ cd /var/www && rm -r "$TEMP_DIR"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) THEME STELLAR BERHASIL TERINSTAL"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) ADDON AUTO SUSPEND BERHASIL DIINSTALL."
     ;;
-1C)
+3C)
 echo -e "${GREEN}Installing ${YELLOW}sudo${GREEN} if not installed${RESET}"
     apt install sudo -y > /dev/null 2>&1
     cd /var/www/ > /dev/null 2>&1
@@ -308,7 +324,7 @@ echo -e "${GREEN}Installing ${YELLOW}sudo${GREEN} if not installed${RESET}"
     echo -e "${GREEN}Optimizing the Panel...${RESET}"
     sudo php artisan optimize:clear > /dev/null 2>&1
     ;;
-        2Ahshs)
+        4Ahshs)
     animate_text "( 𝗔𝗨𝗧𝗢𝗠𝗔𝗧𝗜𝗖 ) FITUR INI DALAM TAHAP PEMGEMBANGAN"
     ;;
 
@@ -379,7 +395,7 @@ echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
 
         ;;
 
-    2A)
+    4A)
    REPO_URL="https://github.com/LeXcZxMoDz9/LeXcZUbot"
 TEMP_DIR="LeXcZUbot"
 
