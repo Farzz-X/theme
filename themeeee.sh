@@ -68,7 +68,6 @@ check_token() {
     fi
 }
 
-# Menampilkan informasi
 clear
 echo -e "\033[0m"
 echo -e "${RED}𝗢𝗪𝗡𝗘𝗥${RESET}${BLUE}𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥${RESET}"
@@ -76,7 +75,40 @@ echo -e "\033[32mWHATSAPP  : 6288297877872\033[0m"
 echo ""
 # Tambahkan bagian lain dari skrip Anda di sini jika diperlukan
 # Fungsi untuk menampilkan animasi loading
+loading_animation() {
+    local delay=0
+    local spinstr='|/-\'
+    local loading_text="LOADING..."
+    local i=0
+    while [ $i -lt ${#loading_text} ]; do
+        local temp=${spinstr#?}
+        printf " [%c] %s" "$spinstr" "${loading_text:0:i+1}"
+        local spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+        printf "\r"
+        i=$((i + 1))
+    done
+    sleep 0
+    printf "\r\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+}
 
+# Fungsi untuk menampilkan teks animasi
+animate_text() {
+    local text=$1
+    for ((i=0; i<${#text}; i++)); do
+        printf "%s" "${text:$i:1}"
+        sleep 0
+    done
+    echo ""
+}
+
+# Menampilkan teks dengan animasi
+echo -e "${BLUE}(𝗔𝗨𝗧𝗢𝗠𝗔𝗧𝗜𝗖) 𝖫ICENSE ANDA BENAR, TERIMAKASIH TELAH MEMBELI LICENSE INI YA${RESET}"
+animate_text "OPSI ADA DIBAWAH INI"
+# Fungsi untuk menampilkan animasi loading
+
+echo -ne "\033[K"  # Menghapus teks loading dari baris
+sleep 0
 
 check_token
 echo "𝗖𝗢𝗠𝗕𝗜𝗡𝗘𝗗 𝗜𝗡𝗦𝗧𝗔𝗟𝗟𝗘𝗥 ( 𝗙𝗜𝗟𝗘𝗦 )"
