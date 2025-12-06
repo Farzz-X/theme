@@ -22,17 +22,23 @@ CYAN='\033[0;36m' # Reset warna teks ke default
 # EXPIRY (untuk permanen) = "_"
 
 TOKENS=(
-    "S3l1bWl8RmFyaXN8cGVybXw="   # Token permanen: Kyumi
-    "UFJFTS0xREFZfRmFyaXMfcHJlbXwxOTk5LTEyLTA4"   # PREMIUM-1DAY
-    "UFJFTS0yREFZfRmFyaXMfcHJlbXwxOTk5LTEyLTA5"   # PREMIUM-2DAY
-    "UFJFTS03REFZfRmFyaXMfcHJlbXwxOTk5LTEyLTE0"   # PREMIUM-7DAY
+    # Permanen
+    "S3l1bWl8RmFyaXN8cGVybXw="          # Kyumi (owner: Faris)
+
+    # Premium
+    "UFJFTS0xREFZfRmFyaXMfcHJlbXwxOTk5LTEyLTA4"   # PREM-1DAY
+    "UFJFTS0yREFZfRmFyaXMfcHJlbXwxOTk5LTEyLTA5"   # PREM-2DAY
+    "UFJFTS03REFZfRmFyaXMfcHJlbXwxOTk5LTEyLTE0"   # PREM-7DAY
 )
+
+OWNER_CONTACT="Faris (WA/Discord/email)"  # Bisa diganti sesuai info owner
 
 check_token() {
     echo -e "\033[36mMasukkan License Token Anda:\033[0m"
     read -p "> " USER_TOKEN
 
     MATCHED=false
+    TODAY=$(date +%Y-%m-%d)
 
     for encoded in "${TOKENS[@]}"; do
         decoded=$(echo "$encoded" | base64 -d)
@@ -45,31 +51,30 @@ check_token() {
         if [ "$USER_TOKEN" == "$TOKEN_VALUE" ]; then
             MATCHED=true
 
-            # Jika token permanen
             if [ "$TOKEN_TYPE" == "perm" ]; then
-                echo -e "\033[0;32mToken valid (PERMANEN). Selamat datang, $OWNER_NAME!\033[0m"
-                sleep 1
+                echo -e "\033[0;32mToken PERMANEN valid. Selamat datang, $OWNER_NAME!\033[0m"
                 return
             fi
 
-            # Jika token expired
-            TODAY=$(date +%Y-%m-%d)
+            # Premium / expired
             if [[ "$TODAY" > "$EXPIRE_DATE" ]]; then
-                echo -e "\033[0;31mToken sudah expired pada $EXPIRE_DATE!\033[0m"
+                echo -e "\033[0;31mToken PREMIUM sudah EXPIRED pada $EXPIRE_DATE ❌\033[0m"
+                echo -e "\033[33mSilakan hubungi owner untuk membeli token baru: $OWNER_CONTACT\033[0m"
                 exit 1
             fi
 
-            echo -e "\033[0;32mToken valid. Selamat datang terima kasih telah membeli license kami, $OWNER_NAME!\033[0m"
-            sleep 1
+            echo -e "\033[0;32mToken PREMIUM valid. Selamat datang, $OWNER_NAME!\033[0m"
             return
         fi
     done
 
     if [ "$MATCHED" = false ]; then
-        echo -e "\033[0;31mToken salah! Akses ditolak.\033[0m"
+        echo -e "\033[0;31mToken salah! Akses ditolak ❌\033[0m"
         exit 1
     fi
 }
+
+
 
 clear
 echo -e "\033[0m"
