@@ -78,7 +78,7 @@ echo ""
 # Fungsi untuk menampilkan animasi loading
 
 
-
+check_token
 echo "𝗖𝗢𝗠𝗕𝗜𝗡𝗘𝗗 𝗜𝗡𝗦𝗧𝗔𝗟𝗟𝗘𝗥 ( 𝗙𝗜𝗟𝗘𝗦 )"
 echo "1A. INSTALL THEME ELYSIUM,AUTOSUSPEND"
 echo "2B. INSTALL THEME STELLAR,AUTOSUSPEND"
