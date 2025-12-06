@@ -28,7 +28,7 @@ TOKENS=(
     "UFJFTS03REFZfEZhX3ByZW18cHJlbXwyMDI1LTEyLTE0"   # PREM-7DAY
 )
 
-OWNER_CONTACT="Faris (WA/Discord/email)"  # Bisa diganti sesuai info owner
+OWNER_CONTACT="Faris ( Wa : https://wa.me/6288297877872 )"  # Bisa diganti sesuai info owner
 
 check_token() {
     echo -e "\033[36mMasukkan License Token Anda:\033[0m"
