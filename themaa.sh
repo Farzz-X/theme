@@ -22,13 +22,10 @@ CYAN='\033[0;36m' # Reset warna teks ke default
 # EXPIRY (untuk permanen) = "_"
 
 TOKENS=(
-    # Permanen
-    "S3l1bWl8RmFyaXN8cGVybXw="          # Kyumi (owner: Faris)
-
-    # Premium
-    "UFJFTS0xREFZfRmFyaXMfcHJlbXwxOTk5LTEyLTA4"   # PREM-1DAY
-    "UFJFTS0yREFZfRmFyaXMfcHJlbXwxOTk5LTEyLTA5"   # PREM-2DAY
-    "UFJFTS03REFZfRmFyaXMfcHJlbXwxOTk5LTEyLTE0"   # PREM-7DAY
+    "S3l1bWl8RmFyaXN8cGVybXw="                # Kyumi (permanen)
+    "UFJFTS0xREFZfEZhX3ByZW18MQ=="           # PREM-1DAY
+    "UFJFTS0yREFZfEZhX3ByZW18Mg=="           # PREM-2DAY
+    "UFJFTS03REFZfEZhX3ByZW18Nw=="           # PREM-7DAY
 )
 
 OWNER_CONTACT="Faris (WA/Discord/email)"  # Bisa diganti sesuai info owner
