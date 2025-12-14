@@ -205,14 +205,15 @@ cd /var/www && rm -r "$TEMP_DIR"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) THEME ELYSIUM BERHASIL TERINSTAL"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) ADDON AUTO SUSPEND BERHASIL DIINSTALL."
     ;;
-    2)
+    l
+   2)
 #!/bin/bash
-echo -e "${BLUE}INSTALL THEME STELLAR (FULL SAFE MODE)${RESET}"
+echo -e "${BLUE}INSTALL STELLAR + AUTOSUSPEND (FULL CLEAN)${RESET}"
 
 ### ===============================
-### 1. FIX NODE (PAKSA v16 ONLY)
+### 1. FIX NODE (WAJIB v16)
 ### ===============================
-echo -e "${CYAN}Fixing Node.js version...${RESET}"
+echo -e "${CYAN}Fixing Node.js...${RESET}"
 
 npm install -g n >/dev/null 2>&1
 n 16.20.2 >/dev/null 2>&1
@@ -223,9 +224,8 @@ if [[ "$NODE_VERSION" != v16* ]]; then
   exit 1
 fi
 
-echo -e "${GREEN}Node OK: ${NODE_VERSION}${RESET}"
-
 unset NODE_OPTIONS
+echo -e "${GREEN}Node OK: ${NODE_VERSION}${RESET}"
 
 ### ===============================
 ### 2. INSTALL YARN
@@ -235,57 +235,54 @@ if ! command -v yarn &>/dev/null; then
 fi
 
 ### ===============================
-### 3. AMBIL THEME
+### 3. AMBIL FILE (1x CLONE)
 ### ===============================
 REPO_URL="https://github.com/Farzz-X/theme"
 TEMP_DIR="theme"
 
 cd /var/www || exit
-rm -rf theme
+rm -rf "$TEMP_DIR"
 git clone "$REPO_URL"
 
+### ===============================
+### 4. EXTRACT THEME STELLAR
+### ===============================
 if [ ! -f "$TEMP_DIR/stellarrimake.zip" ]; then
-  echo -e "${RED}File stellarrimake.zip tidak ditemukan ❌${RESET}"
+  echo -e "${RED}stellarrimake.zip tidak ditemukan ❌${RESET}"
   exit 1
 fi
 
-mv "$TEMP_DIR/stellarrimake.zip" /var/www/
-rm -rf theme
-
-unzip -o /var/www/stellarrimake.zip -d /var/www/
-rm /var/www/stellarrimake.zip
+unzip -o "$TEMP_DIR/stellarrimake.zip" -d /var/www/
 
 ### ===============================
-### 4. BERSIHKAN BUILD LAMA
+### 5. CLEAN OLD BUILD
 ### ===============================
 cd /var/www/pterodactyl || exit
-
 echo -e "${CYAN}Cleaning old build...${RESET}"
+
 rm -rf node_modules
 rm -f public/mix-manifest.json
 rm -rf bootstrap/cache/*.php
 
 ### ===============================
-### 5. INSTALL DEPENDENCY
+### 6. INSTALL DEPENDENCY
 ### ===============================
 echo -e "${CYAN}Installing dependencies...${RESET}"
 yarn install --force
 yarn add react-feather
 
 ### ===============================
-### 6. BUILD FRONTEND (CRITICAL)
+### 7. BUILD FRONTEND
 ### ===============================
 echo -e "${CYAN}Building frontend...${RESET}"
 if ! yarn build:production; then
   echo -e "${RED}BUILD GAGAL ❌${RESET}"
-  echo -e "${YELLOW}Cek error di atas, installer dihentikan${RESET}"
   exit 1
 fi
 
 ### ===============================
-### 7. LARAVEL FIX
+### 8. LARAVEL FIX
 ### ===============================
-echo -e "${CYAN}Optimizing Laravel...${RESET}"
 php artisan migrate --force
 php artisan view:clear
 php artisan config:clear
@@ -293,18 +290,26 @@ php artisan cache:clear
 php artisan optimize:clear
 
 ### ===============================
-### 8. PERMISSION FIX
+### 9. INSTALL AUTOSUSPEND
 ### ===============================
-echo -e "${CYAN}Fixing permissions...${RESET}"
+echo -e "${CYAN}Installing AutoSuspend...${RESET}"
+
+unzip -o "/var/www/$TEMP_DIR/autosuspens.zip" -d /var/www/
+bash installer.bash
+
+### ===============================
+### 10. PERMISSION + CLEANUP
+### ===============================
+echo -e "${CYAN}Finalizing...${RESET}"
+
 chown -R www-data:www-data /var/www/pterodactyl
 chmod -R 755 storage bootstrap/cache
 
-### ===============================
-### 9. RESTART SERVER
-### ===============================
+rm -rf /var/www/"$TEMP_DIR"
+
 systemctl restart nginx
 
-echo -e "${GREEN}THEME STELLAR BERHASIL TERINSTALL TANPA ERROR 500 ✅${RESET}"
+echo -e "${GREEN}STELLAR + AUTOSUSPEND BERHASIL TERPASANG ✅${RESET}"
 ;;
 3)
 echo -e "${GREEN}Installing ${YELLOW}sudo${GREEN} if not installed${RESET}"
