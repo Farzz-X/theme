@@ -206,97 +206,67 @@ echo "( 𝗙𝗜𝗟𝗘𝗦 ) THEME ELYSIUM BERHASIL TERINSTAL"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) ADDON AUTO SUSPEND BERHASIL DIINSTALL."
     ;;
     2)
-    #!/bin/bash
+#!/bin/bash
 
-# Cek apakah direktori /etc/apt/keyrings sudah ada
-if [ ! -d "/etc/apt/keyrings" ]; then
-  sudo mkdir -p /etc/apt/keyrings
-  echo "Direktori /etc/apt/keyrings telah dibuat."
-else
-  echo "Direktori /etc/apt/keyrings sudah ada."
-fi
+echo -e "${BLUE}INSTALL THEME STELLAR (SAFE MODE)${RESET}"
 
-# Cek apakah file nodesource.gpg sudah ada
-if [ ! -f "/etc/apt/keyrings/nodesource.gpg" ]; then
-  curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-  echo "File nodesource.gpg telah didownload dan disimpan."
-else
-  echo "File nodesource.gpg sudah ada, skip download."
-fi
-
-if dpkg -l | grep -q "nodejs"; then
-  echo "Node.js sudah terinstal."
-else
-  echo "Node.js belum terinstal. Menginstal Node.js sekarang..."
-  sudo apt install -y nodejs
-  if [ $? -eq 0 ]; then
-    echo "Node.js berhasil diinstal."
-  else
-    echo "Terjadi kesalahan saat menginstal Node.js."
-  fi
-fi
-
-
-# Cek apakah repositori sudah ditambahkan
-if ! grep -q "nodesource" /etc/apt/sources.list.d/nodesource.list 2>/dev/null; then
-  echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-  echo "Repositori NodeSource telah ditambahkan."
-else
-  echo "Repositori NodeSource sudah ada, skip penambahan."
-fi
-if npm list -g --depth=0 | grep -q "yarn"; then
-  echo "Yarn sudah terinstal."
-else
-  echo "Yarn belum terinstal. Menginstal yarn sekarang..."
-  npm install -g yarn
-  if [ $? -eq 0 ]; then
-    echo "Yarn berhasil diinstal."
-  else
-    echo "Terjadi kesalahan saat menginstal Yarn."
-  fi
-fi
+### 1. PASTIKAN NODE 16
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt update
-curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash - 
+sudo apt install -y nodejs npm
+sudo npm install -g yarn n
+sudo n 16
 
+node -v
+npm -v
+
+### 2. CLONE THEME
 REPO_URL="https://github.com/Farzz-X/theme"
 TEMP_DIR="theme"
 
-cd /var/www && git clone "$REPO_URL"
+cd /var/www || exit
+rm -rf theme
+git clone "$REPO_URL"
 
-cd /var/www && sudo mv "$TEMP_DIR/stellarrimake.zip" /var/www/
+### 3. EXTRACT STELLAR
+mv "$TEMP_DIR/stellarrimake.zip" /var/www/
 unzip -o /var/www/stellarrimake.zip -d /var/www/
 rm /var/www/stellarrimake.zip
+rm -rf theme
 
-cd /var/www/pterodactyl
-yarn
+### 4. BERSIHKAN BUILD LAMA (INI PENTING)
+cd /var/www/pterodactyl || exit
+rm -rf node_modules
+rm -f public/mix-manifest.json
+rm -rf bootstrap/cache/*.php
 
-# Set flag OpenSSL legacy provider untuk build
+### 5. INSTALL DEPENDENCY
 export NODE_OPTIONS=--openssl-legacy-provider
+yarn install --force
+yarn add react-feather
 
-# Build production dan perbaiki jika error
-if ! yarn build:production; then
-  echo "Kelihatannya ada kesalahan.. Proses fix.."
-  export NODE_OPTIONS=--openssl-legacy-provider
-  yarn
-  yarn add react-feather 
-  npx update-browserslist-db@latest
-  yarn build:production
-fi
+### 6. BUILD FRONTEND (WAJIB BERHASIL)
+yarn build:production || {
+  echo -e "${RED}BUILD GAGAL ❌ INSTALL DIHENTIKAN${RESET}"
+  exit 1
+}
 
-echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
-php artisan migrate
+### 7. LARAVEL FIX
+php artisan migrate --force
 php artisan view:clear
+php artisan config:clear
+php artisan cache:clear
+php artisan optimize:clear
 
-cd /var/www && sudo mv "$TEMP_DIR/autosuspens.zip" /var/www/
-unzip -o /var/www/autosuspens.zip -d /var/www/
-cd /var/www/pterodactyl
-bash installer.bash
-rm /var/www/autosuspens.zip
-cd /var/www && rm -r "$TEMP_DIR"
+### 8. PERMISSION FIX
+chown -R www-data:www-data /var/www/pterodactyl
+chmod -R 755 storage bootstrap/cache
 
-echo "( 𝗙𝗜𝗟𝗘𝗦 ) THEME STELLAR BERHASIL TERINSTAL"
-echo "( 𝗙𝗜𝗟𝗘𝗦 ) ADDON AUTO SUSPEND BERHASIL DIINSTALL."
-    ;;
+### 9. RESTART WEB
+systemctl restart nginx
+
+echo -e "${GREEN}THEME STELLAR BERHASIL TERINSTALL✅${RESET}"
+;;
 3)
 echo -e "${GREEN}Installing ${YELLOW}sudo${GREEN} if not installed${RESET}"
     apt install sudo -y > /dev/null 2>&1
