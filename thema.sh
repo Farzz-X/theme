@@ -205,7 +205,6 @@ cd /var/www && rm -r "$TEMP_DIR"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) THEME ELYSIUM BERHASIL TERINSTAL"
 echo "( 𝗙𝗜𝗟𝗘𝗦 ) ADDON AUTO SUSPEND BERHASIL DIINSTALL."
     ;;
-    l
    2)
 #!/bin/bash
 echo -e "${BLUE}INSTALL STELLAR + AUTOSUSPEND (FULL CLEAN)${RESET}"
