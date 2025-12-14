@@ -207,20 +207,36 @@ echo "( 𝗙𝗜𝗟𝗘𝗦 ) ADDON AUTO SUSPEND BERHASIL DIINSTALL."
     ;;
     2)
 #!/bin/bash
+echo -e "${BLUE}INSTALL THEME STELLAR (FULL SAFE MODE)${RESET}"
 
-echo -e "${BLUE}INSTALL THEME STELLAR (SAFE MODE)${RESET}"
+### ===============================
+### 1. FIX NODE (PAKSA v16 ONLY)
+### ===============================
+echo -e "${CYAN}Fixing Node.js version...${RESET}"
 
-### 1. PASTIKAN NODE 16
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt update
-sudo apt install -y nodejs npm
-sudo npm install -g yarn n
-sudo n 16
+npm install -g n >/dev/null 2>&1
+n 16.20.2 >/dev/null 2>&1
 
-node -v
-npm -v
+NODE_VERSION=$(node -v)
+if [[ "$NODE_VERSION" != v16* ]]; then
+  echo -e "${RED}Node.js bukan v16 ❌ (${NODE_VERSION})${RESET}"
+  exit 1
+fi
 
-### 2. CLONE THEME
+echo -e "${GREEN}Node OK: ${NODE_VERSION}${RESET}"
+
+unset NODE_OPTIONS
+
+### ===============================
+### 2. INSTALL YARN
+### ===============================
+if ! command -v yarn &>/dev/null; then
+  npm install -g yarn
+fi
+
+### ===============================
+### 3. AMBIL THEME
+### ===============================
 REPO_URL="https://github.com/Farzz-X/theme"
 TEMP_DIR="theme"
 
@@ -228,44 +244,67 @@ cd /var/www || exit
 rm -rf theme
 git clone "$REPO_URL"
 
-### 3. EXTRACT STELLAR
+if [ ! -f "$TEMP_DIR/stellarrimake.zip" ]; then
+  echo -e "${RED}File stellarrimake.zip tidak ditemukan ❌${RESET}"
+  exit 1
+fi
+
 mv "$TEMP_DIR/stellarrimake.zip" /var/www/
-unzip -o /var/www/stellarrimake.zip -d /var/www/
-rm /var/www/stellarrimake.zip
 rm -rf theme
 
-### 4. BERSIHKAN BUILD LAMA (INI PENTING)
+unzip -o /var/www/stellarrimake.zip -d /var/www/
+rm /var/www/stellarrimake.zip
+
+### ===============================
+### 4. BERSIHKAN BUILD LAMA
+### ===============================
 cd /var/www/pterodactyl || exit
+
+echo -e "${CYAN}Cleaning old build...${RESET}"
 rm -rf node_modules
 rm -f public/mix-manifest.json
 rm -rf bootstrap/cache/*.php
 
+### ===============================
 ### 5. INSTALL DEPENDENCY
-export NODE_OPTIONS=--openssl-legacy-provider
+### ===============================
+echo -e "${CYAN}Installing dependencies...${RESET}"
 yarn install --force
 yarn add react-feather
 
-### 6. BUILD FRONTEND (WAJIB BERHASIL)
-yarn build:production || {
-  echo -e "${RED}BUILD GAGAL ❌ INSTALL DIHENTIKAN${RESET}"
+### ===============================
+### 6. BUILD FRONTEND (CRITICAL)
+### ===============================
+echo -e "${CYAN}Building frontend...${RESET}"
+if ! yarn build:production; then
+  echo -e "${RED}BUILD GAGAL ❌${RESET}"
+  echo -e "${YELLOW}Cek error di atas, installer dihentikan${RESET}"
   exit 1
-}
+fi
 
+### ===============================
 ### 7. LARAVEL FIX
+### ===============================
+echo -e "${CYAN}Optimizing Laravel...${RESET}"
 php artisan migrate --force
 php artisan view:clear
 php artisan config:clear
 php artisan cache:clear
 php artisan optimize:clear
 
+### ===============================
 ### 8. PERMISSION FIX
+### ===============================
+echo -e "${CYAN}Fixing permissions...${RESET}"
 chown -R www-data:www-data /var/www/pterodactyl
 chmod -R 755 storage bootstrap/cache
 
-### 9. RESTART WEB
+### ===============================
+### 9. RESTART SERVER
+### ===============================
 systemctl restart nginx
 
-echo -e "${GREEN}THEME STELLAR BERHASIL TERINSTALL✅${RESET}"
+echo -e "${GREEN}THEME STELLAR BERHASIL TERINSTALL TANPA ERROR 500 ✅${RESET}"
 ;;
 3)
 echo -e "${GREEN}Installing ${YELLOW}sudo${GREEN} if not installed${RESET}"
